@@ -16,8 +16,8 @@ const HeroBanner = ({ movie }: HeroBannerProps) => {
             <div className="absolute inset-0">
                 <div className="relative h-[70vh] w-full">
                     <Image
-                        src={getImageUrl(movie.backdrop_path, 'original')}
-                        alt={movie.title}
+                        src={getImageUrl(movie.backdrop_path ?? null, 'original')}
+                        alt={movie.title ?? 'Hero Banner'}
                         fill
                         className="object-cover"
                     />

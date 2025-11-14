@@ -141,7 +141,7 @@ export default function Header() {
                                     {results.map(movie => (
                                         <button key={movie.id} onClick={() => openMovie(movie.id)} className="group text-left">
                                             <div className="relative aspect-[2/3] bg-muted rounded-lg overflow-hidden mb-2">
-                                                <img src={getImageUrl(movie.poster_path)} alt={movie.title} className="w-full h-full object-cover group-hover:scale-110 transition" />
+                                                <img src={getImageUrl(movie.poster_path) ?? null} alt={movie.title ?? "Movie Title"} className="w-full h-full object-cover group-hover:scale-110 transition" />
                                             </div>
                                             <h3 className="text-sm font-medium line-clamp-2 group-hover:text-primary">{movie.title}</h3>
                                             <p className="text-xs text-muted-foreground">{movie.release_date?.split("-")[0]}</p>

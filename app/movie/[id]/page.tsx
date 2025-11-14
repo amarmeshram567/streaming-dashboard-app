@@ -89,8 +89,8 @@ export default function MovieDetailPage() {
                 {/* Hero Section */}
                 <div className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
                     <Image
-                        src={getImageUrl(movie.backdrop_path || "", "original")}
-                        alt={movie.title || ""}
+                        src={getImageUrl(movie.backdrop_path ?? null, "original")}
+                        alt={movie.title || "Movie Poster"}
                         fill
                         className="object-cover"
                     />
@@ -104,8 +104,8 @@ export default function MovieDetailPage() {
                         {/* Poster */}
                         <div className="hidden md:block relative h-[450px] w-[300px]">
                             <Image
-                                src={getImageUrl(movie.poster_path || "", "w500")}
-                                alt={movie.title || ""}
+                                src={getImageUrl(movie.poster_path ?? null, "w500")}
+                                alt={movie.title || "Movie Title"}
                                 fill
                                 className="rounded-lg shadow-2xl object-cover"
                             />

@@ -14,8 +14,8 @@ const MovieCard = ({ movie }: MovieCardProps) => {
         <Link href={`/movie/${movie.id}`} className="group block flex-shrink-0">
             <div className="relative w-40 md:w-48 lg:w-56 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:ring-2 group-hover:ring-primary">
                 <Image
-                    src={getImageUrl(movie.poster_path, "w500")}
-                    alt={movie.title}
+                    src={getImageUrl(movie.poster_path ?? null, "w500")}
+                    alt={movie.title ?? "Movie Poster"}
                     width={224}
                     height={336}
                     className="w-full h-60 md:h-72 lg:h-80 object-cover"
