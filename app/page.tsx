@@ -6,6 +6,7 @@ import MovieRow from "./components/MovieRow";
 import { useEffect, useState } from "react";
 import { fetchPopular, fetchTopRated, fetchUpcoming } from "@/lib/tmdb";
 import { Movie } from "@/types/movie";
+import Footer from "./components/Footer";
 
 
 
@@ -63,6 +64,8 @@ export default function Home() {
       <MovieRow movies={topRated} title="Top Rated Movies" />
       {/* Upcoming Movies */}
       <MovieRow movies={upcoming} title="Upcoming Movies" />
+
+      <Footer />
     </>
   );
 }
