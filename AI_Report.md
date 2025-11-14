@@ -86,5 +86,4 @@ During the development, AI tools (ChatGPT) were utilized for guidance and code g
 
 ---
 
-**Live Demo:** 
-**GitHub Repository:** 
+**Live Demo: https://streaming-dashboard-app.vercel.app** 
