@@ -16,23 +16,6 @@ export default function MovieDetailPage() {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // useEffect(() => {
-    //     if (!id) return;
-
-    //     const loadMovie = async () => {
-    //         try {
-    //             const movieData = await fetchMovieById(Number(id));
-    //             setMovie(movieData);
-    //         } catch (err) {
-    //             console.error(err);
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     };
-
-    //     loadMovie();
-    // }, [id]);
-
     useEffect(() => {
         if (!id) {
             console.error("Movie ID is missing!");
@@ -42,7 +25,7 @@ export default function MovieDetailPage() {
 
         const loadMovie = async () => {
             try {
-                const movieData = await fetchMovieById(Number(id));
+                const movieData = await fetchMovieById(id as string);
 
                 if (!movieData) {
                     console.warn(`Movie not found for ID: ${id}`);
@@ -60,6 +43,8 @@ export default function MovieDetailPage() {
 
         loadMovie();
     }, [id]);
+
+
 
 
     if (isLoading) {
@@ -116,7 +101,7 @@ export default function MovieDetailPage() {
                             <div className="space-y-2">
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">{movie.title}</h1>
                                 {movie.tagline && (
-                                    <p className="text-lg text-muted-foreground italic">"{movie.tagline}"</p>
+                                    <p className="text-lg text-muted-foreground italic">{movie.tagline}</p>
                                 )}
                             </div>
 
@@ -178,7 +163,7 @@ export default function MovieDetailPage() {
                             {/* Overview */}
                             <div className="space-y-2">
                                 <h2 className="text-2xl font-bold">Overview</h2>
-                                <p className="text-lg text-foreground/90 leading-relaxed">{movie.overview}</p>
+                                <p className="text-lg text-foreground/90 leading-relaxed">{movie.overview ?? "No overview available."}</p>
                             </div>
                         </div>
                     </div>
