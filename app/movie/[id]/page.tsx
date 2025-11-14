@@ -16,15 +16,43 @@ export default function MovieDetailPage() {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // useEffect(() => {
+    //     if (!id) return;
+
+    //     const loadMovie = async () => {
+    //         try {
+    //             const movieData = await fetchMovieById(Number(id));
+    //             setMovie(movieData);
+    //         } catch (err) {
+    //             console.error(err);
+    //         } finally {
+    //             setIsLoading(false);
+    //         }
+    //     };
+
+    //     loadMovie();
+    // }, [id]);
+
     useEffect(() => {
-        if (!id) return;
+        if (!id) {
+            console.error("Movie ID is missing!");
+            setIsLoading(false);
+            return;
+        }
 
         const loadMovie = async () => {
             try {
                 const movieData = await fetchMovieById(Number(id));
-                setMovie(movieData);
+
+                if (!movieData) {
+                    console.warn(`Movie not found for ID: ${id}`);
+                    setMovie(null);
+                } else {
+                    setMovie(movieData);
+                }
             } catch (err) {
-                console.error(err);
+                console.error("Failed to fetch movie:", err);
+                setMovie(null);
             } finally {
                 setIsLoading(false);
             }
@@ -32,6 +60,7 @@ export default function MovieDetailPage() {
 
         loadMovie();
     }, [id]);
+
 
     if (isLoading) {
         return (
@@ -60,8 +89,8 @@ export default function MovieDetailPage() {
                 {/* Hero Section */}
                 <div className="relative h-[60vh] md:h-[70vh] w-full overflow-hidden">
                     <Image
-                        src={getImageUrl(movie.backdrop_path, "original")}
-                        alt={movie.title}
+                        src={getImageUrl(movie.backdrop_path || "", "original")}
+                        alt={movie.title || ""}
                         fill
                         className="object-cover"
                     />
@@ -75,8 +104,8 @@ export default function MovieDetailPage() {
                         {/* Poster */}
                         <div className="hidden md:block relative h-[450px] w-[300px]">
                             <Image
-                                src={getImageUrl(movie.poster_path, "w500")}
-                                alt={movie.title}
+                                src={getImageUrl(movie.poster_path || "", "w500")}
+                                alt={movie.title || ""}
                                 fill
                                 className="rounded-lg shadow-2xl object-cover"
                             />
